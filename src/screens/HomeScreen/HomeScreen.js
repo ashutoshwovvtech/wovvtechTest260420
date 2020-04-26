@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import axios from 'axios';
 
@@ -72,19 +73,7 @@ class HomeScreen extends Component {
   };
 
   remderOverLayIndicator = () => (
-    <View
-      style={{
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        position: 'absolute',
-        elevation: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'grey',
-        opacity: 0.4,
-      }}>
+    <View style={styles.loaderStyle}>
       <ActivityIndicator color={'#000'} size={80} />
     </View>
   );
@@ -93,14 +82,7 @@ class HomeScreen extends Component {
     return (
       <React.Fragment>
         <View style={{flex: 1}}>
-          <View
-            style={{
-              height: 200,
-              width: '100%',
-              padding: 10,
-              elevation: 8,
-              backgroundColor: 'beige',
-            }}>
+          <View style={styles.formContainer}>
             <TextInput
               placeholder={'Enter Asteriod ID'}
               value={this.state.textinput}
@@ -131,13 +113,7 @@ class HomeScreen extends Component {
               data={this.state.dataList}
               renderItem={({item}) => (
                 <TouchableOpacity onPress={() => this.onItemPress(item.id)}>
-                  <View
-                    style={{
-                      height: 30,
-                      borderBottomWidth: 0.2,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}>
+                  <View style={styles.itemlist}>
                     <Text>{item.id}</Text>
                   </View>
                 </TouchableOpacity>
@@ -151,5 +127,33 @@ class HomeScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  formContainer: {
+    height: 200,
+    width: '100%',
+    padding: 10,
+    elevation: 8,
+    backgroundColor: 'beige',
+  },
+  loaderStyle: {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    position: 'absolute',
+    elevation: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'grey',
+    opacity: 0.4,
+  },
+  itemlist: {
+    height: 30,
+    borderBottomWidth: 0.2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default HomeScreen;
