@@ -11,5 +11,5 @@ const MainStack = () => (
     <Stack.Screen name={'Details'} component={DetailsScreen} />
   </Stack.Navigator>
 );
-
+// <Stack.Screen name={'Home'} component={HomeScreen} />
 export default MainStack;
